@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6249" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="GAViewController">
+            <connections>
+                <outlet property="btnDownload" destination="La9-gz-3kh" id="FdX-ZK-is2"/>
+                <outlet property="heartButton" destination="ItH-W6-fec" id="RCi-WB-C7w"/>
+                <outlet property="lblDownlaodBadge" destination="8U3-VK-udv" id="vRc-5b-0Ye"/>
+                <outlet property="lblcurrentTime" destination="5XW-qf-qSP" id="Kam-Mg-Z4U"/>
+                <outlet property="lblduration" destination="yPV-BJ-DRv" id="gNl-OI-E7I"/>
+                <outlet property="lineBar" destination="Kwc-0t-6e7" id="mRW-8O-Y43"/>
+                <outlet property="nextButton" destination="Jy4-uT-FeY" id="xUf-yn-kmj"/>
+                <outlet property="playButton" destination="14" id="Tw8-Tm-b9X"/>
+                <outlet property="previousButton" destination="3yt-S8-AYM" id="n2B-rs-PzV"/>
+                <outlet property="progressSlider" destination="qMe-z1-bKX" id="Iov-g5-XWw"/>
+                <outlet property="repeatButton" destination="kcJ-FH-vF9" id="eOD-gP-2p2"/>
+                <outlet property="separetor1" destination="8AP-Ad-qNJ" id="Zqc-5e-ee3"/>
+                <outlet property="separetor2" destination="dQD-XL-OoN" id="RFN-wh-cvu"/>
+                <outlet property="shareButton" destination="CsT-7k-HVd" id="HM0-H7-uOA"/>
+                <outlet property="shuffleButton" destination="heW-HY-6pg" id="GCL-GK-BIt"/>
+                <outlet property="view" destination="6" id="7"/>
+                <outlet property="volumeButton" destination="eh2-tT-Vg8" id="3WS-pA-Qgc"/>
+                <outlet property="volumeSlider" destination="Ssk-MQ-Bey" id="Eeo-ar-2nD"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="6">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Main BG Iphone 5.png" id="vuj-vc-mZR">
+                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="14">
+                    <rect key="frame" x="133" y="473" width="54" height="54"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <connections>
+                        <action selector="BtnPlay:" destination="-1" eventType="touchUpInside" id="Y1G-D1-GeR"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="Jy4-uT-FeY">
+                    <rect key="frame" x="198" y="480" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" backgroundImage="Next Select.png"/>
+                    <connections>
+                        <action selector="BtnNext:" destination="-1" eventType="touchUpInside" id="8KA-HL-nE4"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="3yt-S8-AYM">
+                    <rect key="frame" x="80" y="480" width="40" height="40"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="15"/>
+                    <state key="normal" backgroundImage="Previous Select.png"/>
+                    <connections>
+                        <action selector="BtnPrevious:" destination="-1" eventType="touchUpInside" id="RbJ-5W-tgZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="heW-HY-6pg">
+                    <rect key="frame" x="272" y="487" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <state key="normal" backgroundImage="shuffle_selected.png"/>
+                    <connections>
+                        <action selector="BtnShuffle:" destination="-1" eventType="touchUpInside" id="kYO-xk-bUN"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="kcJ-FH-vF9">
+                    <rect key="frame" x="26" y="487" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <state key="normal" image="repeat_selected.png"/>
+                    <connections>
+                        <action selector="BtnRepeat_Click:" destination="-1" eventType="touchUpInside" id="1Vz-7e-NWZ"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="CsT-7k-HVd">
+                    <rect key="frame" x="8" y="545" width="54" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <state key="normal" image="Share Btn.png"/>
+                    <connections>
+                        <action selector="btnShare_Click:" destination="-1" eventType="touchUpInside" id="lOi-hQ-RWG"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="ItH-W6-fec">
+                    <rect key="frame" x="87" y="545" width="58" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <state key="normal" image="Heart btn.png"/>
+                    <connections>
+                        <action selector="BtnLike:" destination="-1" eventType="touchUpInside" id="LFD-yT-jOY"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="La9-gz-3kh">
+                    <rect key="frame" x="175" y="543" width="58" height="22"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <state key="normal" image="Download.png"/>
+                    <connections>
+                        <action selector="btnDownload_Click:" destination="-1" eventType="touchUpInside" id="HeS-q6-gf5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="eh2-tT-Vg8">
+                    <rect key="frame" x="255" y="545" width="58" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <state key="normal" image="Volume.png"/>
+                    <connections>
+                        <action selector="BtnVolume:" destination="-1" eventType="touchUpInside" id="DmQ-j0-wmk"/>
+                    </connections>
+                </button>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="buttonSeprator.png" id="8AP-Ad-qNJ">
+                    <rect key="frame" x="72" y="540" width="2" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="buttonSeprator.png" id="dQD-XL-OoN">
+                    <rect key="frame" x="159" y="540" width="2" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="buttonSeprator.png" id="yVi-Ej-moa">
+                    <rect key="frame" x="241" y="543" width="2" height="30"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="Kwc-0t-6e7">
+                    <rect key="frame" x="0.0" y="540" width="320" height="1"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                </imageView>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="1" id="qMe-z1-bKX">
+                    <rect key="frame" x="-2" y="437" width="324" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <connections>
+                        <action selector="sliding:" destination="-1" eventType="valueChanged" id="NIg-df-CjF"/>
+                    </connections>
+                </slider>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5XW-qf-qSP">
+                    <rect key="frame" x="0.0" y="422" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-0:00" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="yPV-BJ-DRv">
+                    <rect key="frame" x="273" y="422" width="42" height="21"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" id="Ssk-MQ-Bey">
+                    <rect key="frame" x="46" y="289" width="228" height="31"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                </slider>
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="8U3-VK-udv">
+                    <rect key="frame" x="216" y="535" width="16" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <nil key="simulatedStatusBarMetrics"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="Download.png" width="21" height="25"/>
+        <image name="Heart btn.png" width="20" height="18"/>
+        <image name="Main BG Iphone 5.png" width="320" height="568"/>
+        <image name="Next Select.png" width="41" height="41"/>
+        <image name="Previous Select.png" width="41" height="41"/>
+        <image name="Share Btn.png" width="20" height="20"/>
+        <image name="Volume.png" width="24" height="18"/>
+        <image name="buttonSeprator.png" width="1" height="32"/>
+        <image name="repeat_selected.png" width="28" height="30"/>
+        <image name="shuffle_selected.png" width="31" height="29"/>
+    </resources>
+    <simulatedMetricsContainer key="defaultSimulatedMetrics">
+        <simulatedStatusBarMetrics key="statusBar"/>
+        <simulatedOrientationMetrics key="orientation"/>
+        <simulatedScreenMetrics key="destination" type="retina4"/>
+    </simulatedMetricsContainer>
+</document>

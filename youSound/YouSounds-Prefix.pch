@@ -1,0 +1,29 @@
+//
+//  Prefix header
+//
+//  The contents of this file are implicitly included at the beginning of every source file.
+//
+
+#import <Availability.h>
+#import <CoreMedia/CoreMedia.h>
+#import <AudioToolbox/AudioToolbox.h>
+#import <AVFoundation/AVFoundation.h>
+#import "AppDelegate.h"
+
+#ifndef __IPHONE_5_0
+#warning "This project uses features only available in iOS SDK 5.0 and later."
+#endif
+
+#ifdef __OBJC__
+    #import <UIKit/UIKit.h>
+    #import <Foundation/Foundation.h>
+
+//NSString *vhMac,*iid,*privatekey;
+NSMutableDictionary *DictBrowselist,*DictGetBadge;
+AVPlayer *player;
+NSString *TrackNm;
+AppDelegate *appDelegate;
+BOOL IsFromPlaylist, IsStop, IsInAppBrowse, IsInAppMusic , IsInAppHint,IsFromMyFlist,IsFromSwitch, IsFromBrowseList, IsOffline, IsBuySong;
+#define URLBase @"http://yousounds.com/"
+
+#endif
