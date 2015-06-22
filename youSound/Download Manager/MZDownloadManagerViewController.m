@@ -36,6 +36,8 @@ NSString * const RequestStatusFailed = @"RequestStatusFailed";
     __weak IBOutlet UILabel *lblHeader;
     NSMutableArray *arrURL;
 }
+@property (weak, nonatomic) IBOutlet UIView *masterView;
+@property (weak, nonatomic) IBOutlet UIView *view2;
 @end
 
 @implementation MZDownloadManagerViewController
@@ -55,10 +57,22 @@ NSString * const RequestStatusFailed = @"RequestStatusFailed";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    if (!IS_DEVICE_iPHONE_5)
-    {
-        [bgDownloadTableView setContentInset:UIEdgeInsetsMake(0, 0, 0, 0)];
-    }
+    
+    
+    CGRect newFrame = self.view.frame;
+    newFrame.size = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.view.frame = newFrame;
+    
+    
+    self.masterView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.masterView.frame andColors: BGCOLORS1];
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors: BGCOLORS];
+    self.view2.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view2.frame andColors: BGCOLORS2];
+    
+    
+    
+    
+    
+
     lblHeader.font = lableHeader;
     lblHeader.textColor = [UIColor whiteColor];
     bgDownloadTableView.rowHeight = 101;

@@ -6,6 +6,9 @@
 //  Copyright (c) 2014 Akash. All rights reserved.
 //
 
+#import <TTTAttributedLabel/TTTAttributedLabel.h>
+#import <ActionSheetPicker-3.0/ActionSheetPicker.h>
+
 #import "newUserController.h"
 #import "Global.h"
 #import "SVProgressHUD.h"
@@ -15,7 +18,7 @@
 #import "TermsandCondition.h"
 #import "PrivacyPolicy.h"
 
-@interface newUserController ()
+@interface newUserController ()  <TTTAttributedLabelDelegate>
 {
     NSURL *urlFetchKey, *urlRegisterUser;
     NSMutableDictionary *dictEditData;
@@ -27,20 +30,32 @@
     UIImageView *imgRight;
     NSData *data1;
     
-    IBOutlet UIButton *btnTC;
-    IBOutlet UIButton *btnPrivacy;
+    
+    
+    
     IBOutlet UIButton *btnImageView;
-    IBOutlet UIScrollView *scrollView;
-    IBOutlet UIButton *LeftNavigationBtn;
-    IBOutlet UITextField *txtEmailID;
-    IBOutlet UILabel *lblPrivacy;
-    IBOutlet UITextField *txtPassword;
-    IBOutlet UITextField *txtFullname;
-    IBOutlet UITextField *txtBirthDate;
-    IBOutlet UIButton *signUpBtn;
-    IBOutlet UIDatePicker *dtPicker;
-    IBOutlet UITextField *txtConfirmPWD;
 }
+
+
+@property (weak, nonatomic) IBOutlet UIView *navBar;
+
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *logoHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *imagePickerHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *verticalLogoTop;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *verticalLogoBottom;
+
+
+@property (weak, nonatomic) IBOutlet UITextField *emailAddress;
+@property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet UITextField *fullName;
+@property (weak, nonatomic) IBOutlet UITextField *birthdate;
+
+@property (nonatomic, strong) AbstractActionSheetPicker *actionSheetPicker;
+@property (nonatomic, strong) NSDate *selectedDate;
+
+@property (weak, nonatomic) IBOutlet TTTAttributedLabel *termsText;
+
+
 @end
 
 @implementation newUserController
@@ -58,155 +73,53 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self setupViews];
     
-     NSMutableAttributedString *titleString = [[NSMutableAttributedString alloc] initWithString:@"Terms & Conditions"];
-    NSMutableAttributedString *Privacytxt = [[NSMutableAttributedString alloc] initWithString:@"Privacy Policy"];
-    [titleString addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, [titleString length])];
-    [Privacytxt addAttribute:NSUnderlineStyleAttributeName value:[NSNumber numberWithInteger:NSUnderlineStyleSingle] range:NSMakeRange(0, [Privacytxt length])];
-    if (!IS_DEVICE_iPHONE_5)
-    {
-        [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
-        scrollView.scrollEnabled = true;
-        lblPrivacy.frame = CGRectMake(17, 405, 281, 32);
-        btnTC.frame = CGRectMake(80, 413, 120, 32);
-        btnPrivacy.frame = CGRectMake(195, 413, 120, 32);
-        signUpBtn.frame = CGRectMake(17, 445, 286, 30);
-    }
-    [btnTC setAttributedTitle: titleString forState:UIControlStateNormal];
-    btnTC.titleLabel.textColor = privacyPolivy;
-    btnTC.titleLabel.font =lblPrivacyPolicy;
-
-    [btnPrivacy setAttributedTitle:Privacytxt forState:UIControlStateNormal];
-    btnPrivacy.titleLabel.tintColor =privacyPolivy;
-    btnPrivacy.titleLabel.font =lblPrivacyPolicy;
+    self.selectedDate = [NSDate date];
     
-    lblPrivacy.font = lblPrivacyPolicy;
-    lblPrivacy.textColor = [UIColor whiteColor];
-
-    btnImageView.backgroundColor = [UIColor whiteColor];
-    [btnImageView setBackgroundImage:[UIImage imageNamed:@"Blank Image.png"] forState:UIControlStateNormal];
-    btnImageView.imageView.accessibilityIdentifier = @"Blank Image.png";
-    btnImageView.layer.masksToBounds = YES;
-    btnImageView.layer.cornerRadius = 43;
-    btnImageView.layer.borderColor = [UIColor whiteColor].CGColor;
-    btnImageView.layer.borderWidth = 3.0;
-    
-    UIImage *temp = [UIImage imageNamed:@"Blank Image.png"];
-    data1 = UIImagePNGRepresentation([CommonMethods scaleAndRotateImage:temp]);
-    txtEmailID.leftView = paddinglogintext;
-    UIImageView *img= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    img.image = [UIImage imageNamed:@"Email ID.png" ];
-    txtEmailID.font = lableHeader;
-    [txtEmailID addSubview:img];
-    txtEmailID.leftViewMode = UITextFieldViewModeAlways;
-    txtEmailID.placeholder = @"E-Mail address";
-    
-    UIImageView *img1= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    img1.image = [UIImage imageNamed:@"Password.png"];
-    txtPassword.secureTextEntry=YES;
-    txtPassword.font = lableHeader;
-    [txtPassword addSubview:img1];
-    txtPassword.leftView = paddinglogintext;
-    txtPassword.leftViewMode = UITextFieldViewModeAlways;
-    txtPassword.placeholder = @"••••••••••";
-    
-    UIImageView *img4= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    img4.image = [UIImage imageNamed:@"Password.png"];
-    txtConfirmPWD.secureTextEntry=YES;
-    txtConfirmPWD.font = lableHeader;
-    [txtConfirmPWD addSubview:img4];
-    txtConfirmPWD.leftView = paddinglogintext;
-    txtConfirmPWD.leftViewMode = UITextFieldViewModeAlways;
-    txtConfirmPWD.placeholder = @"••••••••••";
-    
-    txtFullname.leftView = paddinglogintext;
-    UIImageView *img2= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    img2.image = [UIImage imageNamed:@"Full Name.png" ];
-    txtFullname.font = lableHeader;
-    [txtFullname addSubview:img2];
-    txtFullname.leftViewMode = UITextFieldViewModeAlways;
-    txtFullname.placeholder = @"Full Name";
-    
-    txtBirthDate.leftView = paddinglogintext;
-    UIImageView *img3= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    imgRight= [[UIImageView alloc] initWithFrame:CGRectMake(250, 15, 20, 15)];
-    imgRight.image = [UIImage imageNamed:@"DatePopup.png"];
-    
-    img3.image = [UIImage imageNamed:@"Birthday.png" ];
-    [txtBirthDate addSubview:imgRight];
-    txtBirthDate.font = lableHeader;
-    [txtBirthDate addSubview:img3];
-    txtBirthDate.leftViewMode = UITextFieldViewModeAlways;
-    txtBirthDate.placeholder = @"Birth date";
+    data1 = UIImagePNGRepresentation([CommonMethods scaleAndRotateImage:[UIImage imageNamed:@"Blank Image.png"]]);
 }
 
-#pragma mark-  TextField Delegate
-
-- (BOOL)textFieldShouldReturn:(UITextField *)textField
-{
-    if(textField == txtEmailID){
-        [txtPassword becomeFirstResponder];
-    }
-    else if (textField == txtPassword){
-        [txtFullname becomeFirstResponder];
-    }
-    else if (textField == txtFullname){
-        [self txtDateClick:nil];
-    }
-    [textField resignFirstResponder];
-    return YES;
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    btnImageView.layer.cornerRadius = btnImageView.frame.size.width/2;
 }
+
 
 #pragma mark - txtDateClick
 - (IBAction)txtDateClick:(id)sender {
-    [txtBirthDate resignFirstResponder];
-    [txtEmailID resignFirstResponder];
-    [txtFullname resignFirstResponder];
-    [txtPassword resignFirstResponder];
-    if (IS_DEVICE_iPHONE_5)
-    {
-        [scrollView setContentOffset:CGPointMake(0,145) animated:YES];
-    }
-    else
-    {
-        [scrollView setContentOffset:CGPointMake(0,225) animated:YES];
-    }
-    double delayInSeconds = 0.2;//Second of delay
-    dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-    dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-        
-        menu = [[UIActionSheet alloc] initWithTitle:@" "
-        delegate:self cancelButtonTitle:@"" destructiveButtonTitle:nil
-        otherButtonTitles:nil];
-        
-        // Add the picker
-        pickerView = [[UIDatePicker alloc] initWithFrame:CGRectMake(0, 0, 320, 300)];
-        pickerView.datePickerMode = UIDatePickerModeDate;
-        [menu addSubview:pickerView];
-        [menu showInView:self.view];
-        [menu setBounds:CGRectMake(0,0,320, 300)];
-        UIToolbar *pickerToolbar = [[UIToolbar alloc] initWithFrame:CGRectMake(0, -20, 320, 44)];
-        pickerToolbar.barStyle = UIBarStyleBlackOpaque;
-        [menu addSubview:pickerToolbar];
-        
-        NSMutableArray *barItems = [[NSMutableArray alloc] init];
-        
-        UIBarButtonItem *doneBtn = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(pickerDone)];
-        [barItems addObject:doneBtn];
-        [pickerToolbar setItems:barItems animated:YES];
-    });
+
+    
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    NSDateComponents *minimumDateComponents = [calendar components:NSCalendarUnitDay | NSCalendarUnitMonth | NSCalendarUnitYear fromDate:[NSDate date]];
+    [minimumDateComponents setYear:1900];
+    NSDate *minDate = [calendar dateFromComponents:minimumDateComponents];
+    NSDate *maxDate = [NSDate date];
+    
+    _actionSheetPicker = [[ActionSheetDatePicker alloc] initWithTitle:@"" datePickerMode:UIDatePickerModeDate selectedDate:self.selectedDate
+                                                               target:self action:@selector(dateWasSelected:element:) origin:sender];
+    
+    
+    [(ActionSheetDatePicker *) self.actionSheetPicker setMinimumDate:minDate];
+    [(ActionSheetDatePicker *) self.actionSheetPicker setMaximumDate:maxDate];
+    
+    [self.actionSheetPicker addCustomButtonWithTitle:@"Today" value:[NSDate date]];
+    self.actionSheetPicker.hideCancel = YES;
+    [self.actionSheetPicker showActionSheetPicker];
+
 }
 
-#pragma mark - Picker Done CLick
--(void)pickerDone{
-    [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
-    NSDateFormatter *dateFormat = [[NSDateFormatter alloc] init];
-    [dateFormat setDateFormat:@"dd-MM-yyyy"];
-    txtBirthDate.text = [dateFormat stringFromDate:pickerView.date];
-    [menu dismissWithClickedButtonIndex:0 animated:TRUE];
-    [self.view endEditing:YES];
-    [txtBirthDate resignFirstResponder];
+
+- (void)dateWasSelected:(NSDate *)selectedDate element:(id)element {
+    self.selectedDate = selectedDate;
+    
+    NSDateFormatter *df = [[NSDateFormatter alloc] init];
+    [df setDateFormat:@"dd-MM-yyyy"];
+    
+    self.birthdate.text = [df stringFromDate:self.selectedDate];
 }
+
 
 #pragma mark - Left Navigation
 - (IBAction)LeftNavigationBtn_Click:(id)sender {
@@ -216,13 +129,11 @@
 #pragma mark - Register user
 - (IBAction)signUpBtn_Click:(id)sender {
     NSDictionary *dict = nil;
-    dict = [NSDictionary dictionaryWithObjects:@[txtFullname.text, txtPassword.text,txtEmailID.text] forKeys:@[@"vFirstname", @"vPassword",@"vEmail"]];
+    dict = [NSDictionary dictionaryWithObjects:@[self.fullName.text, self.password.text,self.emailAddress.text] forKeys:@[@"vFirstname", @"vPassword",@"vEmail"]];
     //ToCheck Field Is Valid ?
    if ([CommonMethods isValidTextFieldData:dict])
     {
-        dictEditData = [NSMutableDictionary dictionaryWithObjects:@[txtFullname.text,@" ",txtEmailID.text, txtPassword.text,data1, txtBirthDate.text,@"IOS",[[NSUserDefaults standardUserDefaults] valueForKey:@"TokenKey"],@"0"] forKeys:@[@"vFirstname",@"vLastname",@"vEmail", @"vPassword",@"vImage",@"dDob",@"ePlatform",@"vDeviceToken",@"vFbID"]];
-        
-         //dictEditData = [NSMutableDictionary dictionaryWithObjects:@[txtFullname.text,@" ",txtEmailID.text, txtPassword.text,data1, txtBirthDate.text,@"IOS",@"sf",@"0"] forKeys:@[@"vFirstname",@"vLastname",@"vEmail", @"vPassword",@"vImage",@"dDob",@"ePlatform",@"vDeviceToken",@"vFbID"]];
+        dictEditData = [NSMutableDictionary dictionaryWithObjects:@[self.fullName.text,@" ",self.emailAddress.text, self.password.text,data1, self.birthdate.text,@"IOS",[[NSUserDefaults standardUserDefaults] valueForKey:@"TokenKey"],@"0"] forKeys:@[@"vFirstname",@"vLastname",@"vEmail", @"vPassword",@"vImage",@"dDob",@"ePlatform",@"vDeviceToken",@"vFbID"]];
         
         [self registerUser];
     }
@@ -292,12 +203,11 @@
 
 #pragma mark - Clear All Field
 -(void)clearAlltext{
-    txtBirthDate.text = nil;
-    txtEmailID.text = nil;
-    txtFullname.text = nil;
-    txtPassword.text =nil;
+    self.birthdate.text = nil;
+    self.emailAddress.text = nil;
+    self.fullName.text = nil;
+    self.password.text =nil;
     [btnImageView setBackgroundImage:[UIImage imageNamed:@"Blank Image.png"] forState:UIControlStateNormal];
-    [txtEmailID becomeFirstResponder];
 }
 
 #pragma mark - Image Pick
@@ -327,11 +237,6 @@
         }
     }
 }
-- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex
-{
-    [self pickerDone];
-    [scrollView setContentOffset:CGPointMake(0,0) animated:YES];
-}
 
 #pragma mark - ImagePickerController Delegates
 - (void)imagePickerController:(UIImagePickerController *)picker1 didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -350,18 +255,104 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
-- (IBAction)btnTC_Click:(id)sender
-{
-    UIButton *btn = (UIButton *)sender;
-    if(btn.tag == 61)
-    {
+
+
+
+
+
+-(void) setupViews{
+    
+    if(IS_IPHONE_4_OR_LESS){
+        self.logoHeight.constant = 50;
+        self.imagePickerHeight.constant = 64;
+        self.verticalLogoTop.constant = 2;
+        self.verticalLogoBottom.constant = 2;
+    }
+    else if(IS_IPHONE_5){
+        self.logoHeight.constant = 73;
+        self.imagePickerHeight.constant = 80;
+    }
+    
+    
+    btnImageView.backgroundColor = [UIColor whiteColor];
+    [btnImageView setBackgroundImage:[UIImage imageNamed:@"Blank Image.png"] forState:UIControlStateNormal];
+    btnImageView.imageView.accessibilityIdentifier = @"Blank Image.png";
+    btnImageView.layer.masksToBounds = YES;
+    btnImageView.layer.borderColor = [UIColor whiteColor].CGColor;
+    btnImageView.layer.borderWidth = 3.0;
+    
+    
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors: BGCOLORS];
+    
+    [self.view addConstraint:[NSLayoutConstraint constraintWithItem:self.navBar
+                                                          attribute:NSLayoutAttributeTop
+                                                          relatedBy:0
+                                                             toItem:self.view
+                                                          attribute:NSLayoutAttributeTop
+                                                         multiplier:1.0
+                                                           constant:20]];
+    
+    
+    self.emailAddress.leftViewMode = UITextFieldViewModeAlways;
+    self.emailAddress.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Email ID.png"]];
+    
+    self.password.leftViewMode = UITextFieldViewModeAlways;
+    self.password.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Password.png"]];
+    
+    self.fullName.leftViewMode = UITextFieldViewModeAlways;
+    self.fullName.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Full Name.png"]];
+    
+    self.birthdate.leftViewMode = UITextFieldViewModeAlways;
+    self.birthdate.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Birthday.png"]];
+    
+    self.termsText.lineBreakMode = NSLineBreakByWordWrapping;
+    self.termsText.numberOfLines = 0;
+    self.termsText.delegate = self;
+    
+    //By registering, You automatically agree to youSounds's Terms & Conditions and Privacy Policy
+    
+    [self.termsText setText:self.termsText.text afterInheritingLabelAttributesAndConfiguringWithBlock:^ NSMutableAttributedString *(NSMutableAttributedString *mutableAttributedString) {
+        
+        NSRange termsRange = [[mutableAttributedString string] rangeOfString:@"Terms & Conditions" options:NSCaseInsensitiveSearch];
+        NSRange privacyRange = [[mutableAttributedString string] rangeOfString:@"Privacy Policy" options:NSCaseInsensitiveSearch];
+        
+        // Core Text APIs use C functions without a direct bridge to UIFont. See Apple's "Core Text Programming Guide" to learn how to configure string attributes.
+        UIFont *boldSystemFont = [UIFont boldSystemFontOfSize:12];
+        CTFontRef font = CTFontCreateWithName((__bridge CFStringRef)boldSystemFont.fontName, boldSystemFont.pointSize, NULL);
+        if (font) {
+            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:termsRange];
+            
+            [mutableAttributedString addAttribute:(NSString *)kCTFontAttributeName value:(__bridge id)font range:privacyRange];
+            CFRelease(font);
+        }
+        
+        return mutableAttributedString;
+    }];
+    
+    NSURL *url1 = [NSURL URLWithString:[NSString stringWithFormat:@"terms"]];
+    [self.termsText addLinkToURL:url1 withRange: [self.termsText.text rangeOfString:@"Terms & Conditions"]];
+    
+    NSURL *url2 = [NSURL URLWithString:[NSString stringWithFormat:@"privacy"]];
+    [self.termsText addLinkToURL:url2 withRange: [self.termsText.text rangeOfString:@"Privacy Policy"]];
+    
+}
+
+
+#pragma mark - TTTAttributedLabelDelegate
+
+- (void)attributedLabel:(__unused TTTAttributedLabel *)label
+   didSelectLinkWithURL:(NSURL *)url {
+    
+    if([url.absoluteString isEqualToString:@"terms"]){
         TermsandCondition *terms = [[TermsandCondition alloc] initWithNibName:@"TermsandCondition" bundle:nil];
         [self.navigationController presentViewController:terms animated:YES completion:nil];
     }
-    else
-    {
+    else if([url.absoluteString isEqualToString:@"privacy"]){
         PrivacyPolicy *privacy = [[PrivacyPolicy alloc] initWithNibName:@"PrivacyPolicy" bundle:nil];
         [self.navigationController presentViewController:privacy animated:YES completion:nil];
     }
+}
+
+- (void)attributedLabel:(__unused TTTAttributedLabel *)label didLongPressLinkWithURL:(__unused NSURL *)url atPoint:(__unused CGPoint)point {
 }
 @end

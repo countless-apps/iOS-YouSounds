@@ -7,13 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import <FacebookSDK/FacebookSDK.h>
 #import "ForgotPassword.h"
 #import "AppDelegate.h"
 
 @interface LoginController : UIViewController
 
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 @property (weak, nonatomic) IBOutlet UITextField *txtEmailID;
 @property (weak, nonatomic) IBOutlet UITextField *txtPassword;
 @property (weak, nonatomic) IBOutlet UIButton *btnNewUser;

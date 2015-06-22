@@ -35,17 +35,20 @@
     NSNumber *arr_Size,*isLike;
     UIActivityIndicatorView *spinner;
     NSArray *_products, *availableServices;
-    SWTableViewCell *cell;
     UIButton *btnSelectTrack;
     NSUInteger SelectedIndex;
     IBOutlet UIButton *btnBadge;
-    BOOL isFiltered,shouldLoadMore, isFavourite, isAnOffer;
     
-    IBOutlet UIButton * bringUpComposeViewButton;
+    __weak IBOutlet UIView *view2;
+    
+    __weak IBOutlet UIView *masterView;
+    
+    BOOL isFiltered,shouldLoadMore, isFavourite, isAnOffer;
 }
 @end
 
 @implementation BrowseListController
+static NSString *kCellIdentifier = @"CellIdentifier";
 
 @synthesize txtSearch,lblHeader,tableview,LeftNavigationBtn,RightNavigationBtn;
 
@@ -53,8 +56,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGRect newFrame = self.view.frame;
+    newFrame.size = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.view.frame = newFrame;
     
-    bringUpComposeViewButton.layer.cornerRadius = 7.0;
+    [tableview registerNib:[UINib nibWithNibName:@"BrowseListCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kCellIdentifier];
+    tableview.rowHeight = UITableViewAutomaticDimension;
+    tableview.estimatedRowHeight = 44.0;
+    
+    masterView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:masterView.frame andColors: BGCOLORS1];
+    
+    view2.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:view2.frame andColors: BGCOLORS2];
+    
     
     IsBuySong = true;
     IsFromBrowseList= true;
@@ -70,11 +83,7 @@
     lblHeader.font = lableHeader;
     lblHeader.textColor = [UIColor whiteColor];
     
-    if (!IS_DEVICE_iPHONE_5)
-    {
-        [tableview setContentInset:UIEdgeInsetsMake(0, 0, 85, 0)];
-        
-    }
+    
     [[NSNotificationCenter defaultCenter] addObserver:self
                                              selector:@selector(getBadge1:)
                                                  name:@"getBadge" object:nil];
@@ -357,36 +366,17 @@
         musicTrack = [getData valueForKey:@"samplemusic"];
     }
     
-    static NSString *cellIdentifier = @"Cell";
     
-    cell = (SWTableViewCell *) [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     
-    static int kCheck = -10;
-    if(cell == nil)
-    {
-        NSArray *nib =[[NSBundle mainBundle]loadNibNamed:@"BrowseListCell" owner:self options:Nil];
-        cell = [nib objectAtIndex:0];
-        
-        cell.delegate = self;
-        cell.leftUtilityButtons = [self leftButtons];
-        
-        btnSelectTrack = [[UIButton alloc] initWithFrame:CGRectMake(14, 4, 45, 45)];
-        [btnSelectTrack addTarget:self action:@selector(MultipleSelectionTrack:) forControlEvents:UIControlEventTouchUpInside];
-        [btnSelectTrack setTag:kCheck];
-        [btnSelectTrack setImage:[UIImage imageNamed:@"tick.png"] forState:UIControlStateSelected];
-        [btnSelectTrack setImage:nil forState:UIControlStateNormal];
-        [cell.contentView addSubview:btnSelectTrack];
-        btnSelectTrack.layer.masksToBounds = YES;
-        btnSelectTrack.layer.cornerRadius = 5.0;
-        btnSelectTrack.layer.borderColor = [UIColor whiteColor].CGColor;
-        btnSelectTrack.layer.borderWidth = 2.0;
-    }
-    else
-    {
-        cell.delegate = self;
-        btnSelectTrack = (UIButton *)[cell.contentView viewWithTag:kCheck];
-        cell.leftUtilityButtons = [self leftButtons];
-    }
+    BrowseListCell *cell = (BrowseListCell *)[tableview dequeueReusableCellWithIdentifier:kCellIdentifier];
+    [cell setBackgroundColor:[UIColor clearColor]];
+    cell.delegate = self;
+    [cell setLeftUtilityButtons:[self leftButtons] WithButtonWidth:50.0f];
+    
+    cell.tag = indexPath.row;
+    [btnSelectTrack setTitle:[NSString stringWithFormat:@"%d",(int)indexPath.row+200] forState:UIControlStateDisabled];
+    
+
     
     cell.tag = indexPath.row;
 //    [btnSelectTrack setTitle:[NSString stringWithFormat:@"%d",(int)indexPath.row+200] forState:UIControlStateDisabled];
@@ -564,20 +554,20 @@
 {
     leftUtilityButtons = [NSMutableArray new];
     [leftUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithPatternImage:[UIImage imageNamed:@"Swipe Btn BG.png" ]] icon:[UIImage imageNamed:@"Share Btn.png"]];
+     UIColorFromRGB(0x3db3f1) icon:[UIImage imageNamed:@"Share Btn.png"]];
     //Add to Favourite
     if([isLike  isEqual: @"1"]){
         [leftUtilityButtons sw_addUtilityButtonWithColor:
-         [UIColor colorWithPatternImage:[UIImage imageNamed:@"Swipe Btn BG.png" ]]icon:[UIImage imageNamed:@"Heart_Liked.png"]];
+         UIColorFromRGB(0x3db3f1) icon:[UIImage imageNamed:@"Heart_Liked.png"]];
         isFavourite = false;
     }
     else{
         [leftUtilityButtons sw_addUtilityButtonWithColor:
-         [UIColor colorWithPatternImage:[UIImage imageNamed:@"Swipe Btn BG.png" ]]icon:[UIImage imageNamed:@"heart2.png"]];
+         UIColorFromRGB(0x3db3f1) icon:[UIImage imageNamed:@"heart2.png"]];
         isFavourite = true;
     }
     [leftUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithPatternImage:[UIImage imageNamed:@"Swipe Btn BG.png" ]]icon:[UIImage imageNamed:@"Purchase.png"]];
+     UIColorFromRGB(0x3db3f1) icon:[UIImage imageNamed:@"Purchase.png"]];
     return leftUtilityButtons;
 }
 - (void)swipeableTableViewCell:(SWTableViewCell *)cell1 didTriggerLeftUtilityButtonWithIndex:(NSInteger)index

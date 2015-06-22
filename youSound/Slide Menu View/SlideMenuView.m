@@ -17,203 +17,248 @@
 #import "CommonMethods.h"
 #import "NSObject+SBJson.h"
 #import "SVProgressHUD.h"
-#import "AppDelegate.h"
 #import "FriendProfile.h"
 #import "editUserDetails.h"
 #import "UIImageView+AFNetworking.h"
-#import "SWTableViewCell.h"
 #import "BrowseListController.h"
 #import "SettingController.h"
 #import "LoginController.h"
 #import "MZDownloadManagerViewController.h"
 
+#import "LeftMenuCell.h"
+
 @interface SlideMenuView ()<UITableViewDataSource,UITableViewDelegate,SWTableViewCellDelegate>
 {
-    NSMutableArray *tblList,*imgList ;
+
+    
+    
     NSMutableData *reqData;
     NSURL *urllogoutUser;
     NSString *ProfileName,*imgurl;
     
+    
     IBOutlet UIImageView *profileImgView;
     IBOutlet UIButton *BtnimageView;
-    IBOutlet UIScrollView *scrollView;
     IBOutlet UITableView *tableview;
     IBOutlet UILabel *labelName;
 }
+
+@property (strong, nonatomic) NSArray *mArray;
 @end
 
 @implementation SlideMenuView
+static NSString *kCellIdentifier = @"CellIdentifier";
+
+- (NSArray *)mArray
+{
+    
+    if (!_mArray){
+        _mArray = [[NSArray alloc] init];
+        _mArray = @[
+                    
+                    @{ @"name"    : @"Home",
+                       @"image"   : @"Home.png",
+                       },
+                    @{ @"name"    : @"Playlist",
+                       @"image"   : @"PlayList.png",
+                       },
+                    @{ @"name"    : @"Friends",
+                       @"image"   : @"Friends.png",
+                       },
+                    @{ @"name"    : @"Downloads",
+                       @"image"   : @"Download.png",
+                       },
+                    @{ @"name"    : @"Settings",
+                       @"image"   : @"Settings.png",
+                       },
+                    @{ @"name"    : @"Invite friends",
+                       @"image"   : @"FriendProfile.png",
+                       },
+                    @{ @"name"    : @"Logout",
+                       @"image"   : @"Logout.png",
+                       }
+                    
+                    ];
+    }
+    return _mArray;
+}
+
 
 #pragma mark - viewDidLoad
 - (void)viewDidLoad
 {
     [super viewDidLoad];
    
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors: BGCOLORS];
+    
+    
     profileImgView.backgroundColor = [UIColor whiteColor];
     profileImgView.layer.masksToBounds = YES;
-    profileImgView.layer.cornerRadius = 70.0;
+
     profileImgView.layer.borderColor = [UIColor whiteColor].CGColor;
     profileImgView.layer.borderWidth = 3.0f;
     
-    labelName.font = lableHeader;
-    labelName.textAlignment = NSTextAlignmentCenter;
-    labelName.textColor = [UIColor whiteColor];
+    tableview.allowsSelection = YES;
     
-    scrollView.contentSize = CGSizeMake(285, 650);
-    if (IS_DEVICE_iPHONE_5)
-    {
-        scrollView.scrollEnabled = NO;
-    }
-    else
-    {
-        scrollView.scrollEnabled = YES;
-    }
-    tableview.opaque = NO;
-    tableview.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
+    [tableview registerNib:[UINib nibWithNibName:@"LeftMenuCell" bundle:[NSBundle mainBundle]] forCellReuseIdentifier:kCellIdentifier];
+    
+    tableview.delegate = self;
+    tableview.dataSource = self;
     tableview.backgroundColor = [UIColor clearColor];
     
-    tblList = [[NSMutableArray alloc]initWithObjects:
-               @"Home",
-               @"Playlist",
-               @"Friends",
-               @"Downloads",
-               @"Settings",
-               @"Invite friends",
-               @"Logout", nil];
-    imgList = [[NSMutableArray alloc] initWithObjects:
-               @"Home.png",
-               @"PlayList.png",
-               @"Friends.png",
-               @"Download.png",
-               @"Settings.png",
-               @"FriendProfile.png",
-               @"Logout.png", nil];
+    tableview.rowHeight = UITableViewAutomaticDimension;
+    tableview.estimatedRowHeight = 44.0;
+    [tableview setShowsHorizontalScrollIndicator:NO];
+    [tableview setShowsVerticalScrollIndicator:NO];
+    
 }
 -(void)viewWillAppear:(BOOL)animated{
+    
+    [super viewWillAppear:animated];
+    profileImgView.layer.cornerRadius = profileImgView.frame.size.width/2;
+    
     imgurl = [[NSUserDefaults standardUserDefaults] valueForKey:@"imgURL"];
     ProfileName = [[NSUserDefaults standardUserDefaults] valueForKey:@"userName"];
     [profileImgView setImageWithURL:[NSURL URLWithString:imgurl]placeholderImage:[UIImage imageNamed:@"Blank Image.png"]];
     labelName.text = ProfileName;
 }
+
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector: @selector(contentSizeCategoryChanged:) name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
+
+-(void) viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:UIContentSizeCategoryDidChangeNotification object:nil];
+}
+
+-(void)contentSizeCategoryChanged: (NSNotification *) notification {
+    [tableview reloadData];
+}
+
+-(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.mArray.count;
+}
+
 #pragma mark - TableView Delegate
 -(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     cell.backgroundColor = [UIColor clearColor];
     cell.contentView.backgroundColor = [UIColor clearColor];
 }
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-    return 1;
-}
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return tblList.count;
-}
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *cellIdentifier = @"Cell";
-    SWTableViewCell *cell = (SWTableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-    if (cell == nil) {
-        cell = [[SWTableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:cellIdentifier];
-        
-        cell.delegate = self;
+
+-(UITableViewCell *) tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    LeftMenuCell *cell = (LeftMenuCell *)[tableview dequeueReusableCellWithIdentifier:kCellIdentifier];
+    cell.mTitle.text = [self.mArray[indexPath.row] objectForKey:@"name"];
+    
+    UIImage *mImage = [UIImage imageNamed:[self.mArray[indexPath.row] objectForKey:@"image"]];
+    
+    [cell.mImage setImage:mImage];
+    
+    cell.mImage.contentMode = UIViewContentModeCenter;
+    if (cell.mImage.bounds.size.width > mImage.size.width && cell.mImage.bounds.size.height > mImage.size.height) {
+        cell.mImage.contentMode = UIViewContentModeScaleAspectFit;
     }
-    cell.tag = indexPath.row;
     
-    UIView *selectionColor = [[UIView alloc] init];
-    selectionColor.backgroundColor = [UIColor colorWithRed:(0/255.0) green:(0/255.0) blue:(10/255.0) alpha:0.1];
+    [cell setBackgroundColor:[UIColor clearColor]];
     
-    cell.selectedBackgroundView = selectionColor;
+    UIView *bgColorView = [[UIView alloc] init];
+    bgColorView.backgroundColor = UIColorFromRGB(0x26bcd1);
     
-    UIImageView *accessoryImg = [[UIImageView alloc] initWithFrame:CGRectMake(260, 20, 12, 12)];
-    accessoryImg.image = [UIImage imageNamed:@"Cell Accesory.png"];
-    [cell.contentView addSubview:accessoryImg];
+    [cell setSelectedBackgroundView:bgColorView];
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
     
-    tableview.contentInset = UIEdgeInsetsMake(0, -15, 0, 0);
-    tableview.separatorColor = [UIColor whiteColor];
-    
-    UIImageView *cellImg = [[UIImageView alloc] initWithFrame:CGRectMake(35, 15, 22, 22)];
-    cellImg.image = [UIImage imageNamed:[imgList objectAtIndex:indexPath.row]];
-    [cell.contentView addSubview:cellImg];
-    
-    UILabel *lblDetail = [[UILabel alloc] initWithFrame:CGRectMake(70, 10, 120, 30)];
-    lblDetail.font = lableHeader;
-    lblDetail.textColor = [UIColor whiteColor];
-    lblDetail.text = [tblList objectAtIndex:indexPath.row];
-    [cell.contentView addSubview:lblDetail];
     
     return cell;
 }
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-   if (indexPath.row == 0) {
-       
-        if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"BrowseListController"])
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
-        else
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    switch (indexPath.row) {
+        case 0: //HOME
         {
-            BrowseListController *listAll = [[BrowseListController alloc] initWithNibName:@"BrowseListController" bundle:nil];
-            self.menuContainerViewController.centerViewController = listAll;
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"BrowseListController"])
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            else
+            {
+                BrowseListController *listAll = [[BrowseListController alloc] initWithNibName:@"BrowseListController" bundle:nil];
+                self.menuContainerViewController.centerViewController = listAll;
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            }
+            
         }
-    }else if (indexPath.row == 1){
-                
-          if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"PlayList"])
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
-        else
+            break;
+        case 1: //PLAYLIST
         {
-            PlayList *playlist  = [[PlayList alloc] initWithNibName:@"PlayList" bundle:nil];
-            self.menuContainerViewController.centerViewController = playlist;
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"PlayList"])
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            else
+            {
+                PlayList *playlist  = [[PlayList alloc] initWithNibName:@"PlayList" bundle:nil];
+                self.menuContainerViewController.centerViewController = playlist;
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            }
         }
-    }
-    else if (indexPath.row == 2){
-        
-        if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"MyFriendsList"])
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
-        else
+            break;
+        case 2: //FRIENDS
         {
-            MyFriendsList *friendList  = [[MyFriendsList alloc] initWithNibName:@"MyFriendsList" bundle:nil];
-            self.menuContainerViewController.centerViewController = friendList;
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"MyFriendsList"])
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            else
+            {
+                MyFriendsList *friendList  = [[MyFriendsList alloc] initWithNibName:@"MyFriendsList" bundle:nil];
+                self.menuContainerViewController.centerViewController = friendList;
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            }
         }
-    }
-    else if (indexPath.row == 3){
-        if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"MZDownloadManagerViewController"])
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
-        else
-        {
-            self.menuContainerViewController.centerViewController = appDelegate.objDownloadVC;
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            break;
+        case 3:{//DOWNLOADS
+            if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"MZDownloadManagerViewController"])
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            else
+            {
+                self.menuContainerViewController.centerViewController = appDelegate.objDownloadVC;
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            }
         }
-    }
-    else if (indexPath.row == 4){
-        
-        if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"SettingController"])
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
-        else
-        {
-            SettingController *settingControl  = [[SettingController alloc] initWithNibName:@"SettingController" bundle:nil];
-            self.menuContainerViewController.centerViewController = settingControl;
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            break;
+        case 4:{//SETTINGS
+            if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"SettingController"])
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            else
+            {
+                SettingController *settingControl  = [[SettingController alloc] initWithNibName:@"SettingController" bundle:nil];
+                self.menuContainerViewController.centerViewController = settingControl;
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            }
         }
-    }
-    else if (indexPath.row == 5){
-        
-        if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"InviteFriendsController"])
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
-        else
-        {
-            InviteFriendsController *invite  = [[InviteFriendsController alloc] initWithNibName:@"InviteFriendsController" bundle:nil];
-            self.menuContainerViewController.centerViewController = invite;
-            [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            break;
+        case 5:{//Invite friends
+            if([[self.menuContainerViewController.centerViewController nibName] isEqualToString:@"InviteFriendsController"])
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            else
+            {
+                InviteFriendsController *invite  = [[InviteFriendsController alloc] initWithNibName:@"InviteFriendsController" bundle:nil];
+                self.menuContainerViewController.centerViewController = invite;
+                [self.menuContainerViewController setMenuState:MFSideMenuStateClosed];
+            }
         }
-    }
-    else if (indexPath.row == 6){
-       
-        [self logout];
+            break;
+        case 6:{
+            [self logout];
+        }
+        default:
+            break;
     }
 }
+
 #pragma mark - Logout Web Service
 -(void)logout
 {
@@ -238,16 +283,6 @@
         {
             NSLog(@"ERROR!!");
             DisplayAlert((NSString *)[error localizedDescription]);
-            [SVProgressHUD dismiss];
-        }
-        else if (data)
-        {
-            NSDictionary *responseData = [data JSONValue];
-            BOOL Success = [[responseData valueForKey:@"SUCCESS"] boolValue];
-            if (Success)
-            {}
-            else
-            {}
         }
         [SVProgressHUD dismiss];
     }];

@@ -1,148 +1,215 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6249" systemVersion="14B25" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OPENSANS-SEMIBOLD.TTF">
+            <string>OpenSans-Semibold</string>
+        </mutableArray>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="InviteFriendsController">
             <connections>
-                <outlet property="LeftNavigationBtn" destination="Z7q-lX-TQ1" id="LVI-WH-iJA"/>
-                <outlet property="RightNavigationBtn" destination="81p-Le-o5O" id="Njz-GW-949"/>
-                <outlet property="btnAll" destination="czT-GY-yyv" id="QaH-e6-MXT"/>
-                <outlet property="btnBadge" destination="Yke-36-Amw" id="SDg-6t-Ugs"/>
-                <outlet property="btnDone" destination="nBY-kh-jmN" id="asM-Ee-RU9"/>
-                <outlet property="lblHeader" destination="Hu0-No-lnU" id="d80-fB-vye"/>
-                <outlet property="tableview" destination="cYB-fY-S95" id="5gS-EU-d9z"/>
-                <outlet property="txtSearch" destination="1Ug-ZQ-wNt" id="E3r-Ua-IHO"/>
-                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="LeftNavigationBtn" destination="rYk-u5-OLm" id="As7-dT-ucn"/>
+                <outlet property="RightNavigationBtn" destination="IOH-bH-fYh" id="yzK-9v-o6o"/>
+                <outlet property="btnAll" destination="LIw-0f-1FN" id="ISF-BX-Mjd"/>
+                <outlet property="btnBadge" destination="gkL-CD-2dd" id="t2Z-ig-aNN"/>
+                <outlet property="btnDone" destination="jYZ-L1-0uG" id="RMX-30-k1a"/>
+                <outlet property="lblHeader" destination="8OD-h8-MbH" id="kbg-4e-xXN"/>
+                <outlet property="masterView" destination="fzX-R5-fzm" id="OJg-ws-fc0"/>
+                <outlet property="tableview" destination="TrF-CZ-2Vs" id="VxZ-3z-7Pi"/>
+                <outlet property="txtSearch" destination="711-wi-uvr" id="do1-lu-klI"/>
+                <outlet property="view" destination="5wV-1p-7fI" id="VY9-Zc-5ps"/>
+                <outlet property="view2" destination="cYI-Qp-nbO" id="7ai-bk-kHy"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
-            <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+        <view contentMode="scaleToFill" id="5wV-1p-7fI">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Screen BG Iphone 5.png" id="iXe-Mx-w2q">
-                    <rect key="frame" x="0.0" y="-18" width="320" height="463"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxY="YES"/>
-                </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Search Text BG.png" id="VxR-tU-D56">
-                    <rect key="frame" x="5" y="62" width="308" height="40"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" id="1Ug-ZQ-wNt">
-                    <rect key="frame" x="19" y="67" width="252" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <textInputTraits key="textInputTraits"/>
-                    <connections>
-                        <action selector="txtSearchEdit:" destination="-1" eventType="editingChanged" id="xqZ-LI-8dV"/>
-                        <outlet property="delegate" destination="-1" id="SfI-Md-M0l"/>
-                    </connections>
-                </textField>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Seacrh Btn.png" id="bx7-ZV-9iD">
-                    <rect key="frame" x="274" y="67" width="30" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="81p-Le-o5O">
-                    <rect key="frame" x="265" y="13" width="51" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="Notification Bell.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="RightNavigationBtn_Click:" destination="-1" eventType="touchUpInside" id="mBG-7B-HoK"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="Z7q-lX-TQ1">
-                    <rect key="frame" x="6" y="13" width="51" height="45"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <state key="normal" image="SideBar Navigation.png">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="LeftNavigationBtn_Click:" destination="-1" eventType="touchUpInside" id="IE6-l7-UUp"/>
-                    </connections>
-                </button>
-                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friends" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Hu0-No-lnU">
-                    <rect key="frame" x="109" y="22" width="105" height="21"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="czT-GY-yyv">
-                    <rect key="frame" x="19" y="533" width="53" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <state key="normal" title="All" backgroundImage="All Btn BG.png">
-                        <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="btnAll_Click:" destination="-1" eventType="touchUpInside" id="YeA-1U-M2f"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="nBY-kh-jmN">
-                    <rect key="frame" x="238" y="533" width="62" height="30"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <state key="normal" title="Done" backgroundImage="Done Btn BG.png">
-                        <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="btnDone_Click:" destination="-1" eventType="touchUpInside" id="I1H-La-TRg"/>
-                    </connections>
-                </button>
-                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="60" sectionHeaderHeight="1" sectionFooterHeight="1" id="cYB-fY-S95">
-                    <rect key="frame" x="0.0" y="128" width="320" height="406"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fzX-R5-fzm">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="146"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yxj-KR-Ldl" userLabel="navbar">
+                            <rect key="frame" x="0.0" y="20" width="600" height="46"/>
+                            <subviews>
+                                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invite Friends" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8OD-h8-MbH">
+                                    <rect key="frame" x="241" y="11" width="118" height="25"/>
+                                    <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="18"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IOH-bH-fYh">
+                                    <rect key="frame" x="562" y="8" width="30" height="30"/>
+                                    <state key="normal" image="Notification Bell.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="RightNavigationBtn_Click:" destination="-1" eventType="touchUpInside" id="Cre-pR-rZH"/>
+                                    </connections>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gkL-CD-2dd" userLabel="notif">
+                                    <rect key="frame" x="580" y="8" width="12" height="12"/>
+                                    <color key="backgroundColor" red="0.1019607843" green="0.81176470590000005" blue="0.85490196080000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="12" id="aX8-DC-Fqb"/>
+                                        <constraint firstAttribute="height" constant="12" id="vqc-Pw-c9t"/>
+                                    </constraints>
+                                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
+                                    <state key="normal">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                            <integer key="value" value="6"/>
+                                        </userDefinedRuntimeAttribute>
+                                    </userDefinedRuntimeAttributes>
+                                </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rYk-u5-OLm">
+                                    <rect key="frame" x="8" y="8" width="30" height="30"/>
+                                    <state key="normal" image="SideBar Navigation.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="LeftNavigationBtn_Click:" destination="-1" eventType="touchUpInside" id="0L0-Li-eUO"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="gkL-CD-2dd" firstAttribute="top" secondItem="IOH-bH-fYh" secondAttribute="top" id="0Yl-XR-Fjt"/>
+                                <constraint firstAttribute="trailing" secondItem="IOH-bH-fYh" secondAttribute="trailing" constant="8" id="EJh-Xt-BVK"/>
+                                <constraint firstItem="gkL-CD-2dd" firstAttribute="trailing" secondItem="IOH-bH-fYh" secondAttribute="trailing" id="Gdg-5n-Tgi"/>
+                                <constraint firstItem="rYk-u5-OLm" firstAttribute="top" secondItem="yxj-KR-Ldl" secondAttribute="top" constant="8" id="OXM-8G-0uL"/>
+                                <constraint firstItem="IOH-bH-fYh" firstAttribute="centerY" secondItem="8OD-h8-MbH" secondAttribute="centerY" id="Ub4-mp-us4"/>
+                                <constraint firstItem="rYk-u5-OLm" firstAttribute="leading" secondItem="yxj-KR-Ldl" secondAttribute="leading" constant="8" id="sqa-LM-Btb"/>
+                                <constraint firstAttribute="bottom" secondItem="rYk-u5-OLm" secondAttribute="bottom" constant="8" id="uHa-Su-ghm"/>
+                                <constraint firstAttribute="centerX" secondItem="8OD-h8-MbH" secondAttribute="centerX" id="uNF-bJ-FT9"/>
+                                <constraint firstAttribute="centerY" secondItem="8OD-h8-MbH" secondAttribute="centerY" id="ygP-dG-W5J"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="98J-jz-Unn">
+                            <rect key="frame" x="15" y="76" width="570" height="50"/>
+                            <subviews>
+                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="711-wi-uvr">
+                                    <rect key="frame" x="15" y="17" width="512" height="17"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                    <textInputTraits key="textInputTraits"/>
+                                    <connections>
+                                        <action selector="txtSearchEdit:" destination="-1" eventType="editingChanged" id="844-KL-DPV"/>
+                                    </connections>
+                                </textField>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="28H-fY-kPs">
+                                    <rect key="frame" x="535" y="11" width="27" height="27"/>
+                                    <state key="normal" image="Seacrh Btn.png">
+                                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                    </state>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstItem="28H-fY-kPs" firstAttribute="leading" secondItem="711-wi-uvr" secondAttribute="trailing" constant="8" id="JId-g6-6RQ"/>
+                                <constraint firstAttribute="trailing" secondItem="28H-fY-kPs" secondAttribute="trailing" constant="8" id="UBx-9H-tjC"/>
+                                <constraint firstAttribute="centerY" secondItem="711-wi-uvr" secondAttribute="centerY" id="UqH-av-AaJ"/>
+                                <constraint firstAttribute="height" constant="50" id="qmz-wd-igm"/>
+                                <constraint firstItem="711-wi-uvr" firstAttribute="leading" secondItem="98J-jz-Unn" secondAttribute="leading" constant="15" id="tZl-De-6Fs"/>
+                                <constraint firstItem="28H-fY-kPs" firstAttribute="centerY" secondItem="711-wi-uvr" secondAttribute="centerY" constant="-0.5" id="xBd-FO-ENf"/>
+                            </constraints>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                    <integer key="value" value="20"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cYI-Qp-nbO">
+                            <rect key="frame" x="0.0" y="126" width="600" height="20"/>
+                            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="EXH-dE-Ric"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.7725490196" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="yxj-KR-Ldl" firstAttribute="top" secondItem="fzX-R5-fzm" secondAttribute="top" constant="20" id="2al-Ry-bQF"/>
+                        <constraint firstItem="cYI-Qp-nbO" firstAttribute="top" secondItem="98J-jz-Unn" secondAttribute="bottom" id="3re-S4-WWT"/>
+                        <constraint firstAttribute="trailing" secondItem="yxj-KR-Ldl" secondAttribute="trailing" id="4CL-jc-kVq"/>
+                        <constraint firstItem="cYI-Qp-nbO" firstAttribute="leading" secondItem="fzX-R5-fzm" secondAttribute="leading" id="9vV-RL-t8v"/>
+                        <constraint firstAttribute="trailing" secondItem="cYI-Qp-nbO" secondAttribute="trailing" id="E6N-wg-pw7"/>
+                        <constraint firstItem="yxj-KR-Ldl" firstAttribute="leading" secondItem="fzX-R5-fzm" secondAttribute="leading" id="Ev4-ty-j5C"/>
+                        <constraint firstItem="98J-jz-Unn" firstAttribute="top" secondItem="yxj-KR-Ldl" secondAttribute="bottom" constant="10" id="hoC-CB-MGr"/>
+                        <constraint firstItem="98J-jz-Unn" firstAttribute="leading" secondItem="fzX-R5-fzm" secondAttribute="leading" constant="15" id="sIK-ab-EVN"/>
+                        <constraint firstAttribute="trailing" secondItem="98J-jz-Unn" secondAttribute="trailing" constant="15" id="uU3-YM-vND"/>
+                        <constraint firstAttribute="bottom" secondItem="cYI-Qp-nbO" secondAttribute="bottom" id="vw6-ia-F0e"/>
+                    </constraints>
+                </view>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="TrF-CZ-2Vs">
+                    <rect key="frame" x="0.0" y="146" width="600" height="410"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="aul-df-k4d"/>
-                        <outlet property="delegate" destination="-1" id="l5A-hG-WSx"/>
+                        <outlet property="dataSource" destination="-1" id="bNq-lj-pSQ"/>
+                        <outlet property="delegate" destination="-1" id="coh-VL-cah"/>
                     </connections>
                 </tableView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shadding with BG.png" id="8qg-kk-ips">
-                    <rect key="frame" x="0.0" y="87" width="322" height="44"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" id="Yke-36-Amw">
-                    <rect key="frame" x="295" y="20" width="12" height="12"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="9"/>
-                    <state key="normal" backgroundImage="Notification with Number.png">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LIw-0f-1FN">
+                    <rect key="frame" x="8" y="564" width="47" height="28"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.7725490196" blue="0.21176470589999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <inset key="contentEdgeInsets" minX="15" minY="5" maxX="15" maxY="5"/>
+                    <state key="normal" title="All">
+                        <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="RightNavigationBtn_Click:" destination="-1" eventType="touchUpInside" id="w4a-VC-sVt"/>
+                        <action selector="btnAll_Click:" destination="-1" eventType="touchUpInside" id="ua1-Rg-FXP"/>
                     </connections>
                 </button>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Shadow Bar.png" id="UPJ-gc-aIs">
-                    <rect key="frame" x="0.0" y="0.0" width="8" height="568"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jYZ-L1-0uG">
+                    <rect key="frame" x="525" y="564" width="67" height="28"/>
+                    <color key="backgroundColor" red="0.0" green="0.74509803921568629" blue="0.14901960784313725" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <inset key="contentEdgeInsets" minX="15" minY="5" maxX="15" maxY="5"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" red="0.96862745100000003" green="0.96862745100000003" blue="0.96862745100000003" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                            <integer key="value" value="4"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                    <connections>
+                        <action selector="btnDone_Click:" destination="-1" eventType="touchUpInside" id="B8X-me-pfI"/>
+                    </connections>
+                </button>
             </subviews>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="fzX-R5-fzm" firstAttribute="leading" secondItem="5wV-1p-7fI" secondAttribute="leading" id="66K-mZ-2tR"/>
+                <constraint firstAttribute="bottom" secondItem="LIw-0f-1FN" secondAttribute="bottom" constant="8" id="7Jh-bL-vp2"/>
+                <constraint firstAttribute="trailing" secondItem="TrF-CZ-2Vs" secondAttribute="trailing" id="8TV-8v-ZM7"/>
+                <constraint firstAttribute="trailing" secondItem="fzX-R5-fzm" secondAttribute="trailing" id="J61-IY-GfU"/>
+                <constraint firstAttribute="bottom" secondItem="jYZ-L1-0uG" secondAttribute="bottom" constant="8" id="OrW-5t-mrW"/>
+                <constraint firstItem="jYZ-L1-0uG" firstAttribute="top" secondItem="TrF-CZ-2Vs" secondAttribute="bottom" constant="8" id="UD0-ON-X8O"/>
+                <constraint firstItem="LIw-0f-1FN" firstAttribute="leading" secondItem="5wV-1p-7fI" secondAttribute="leading" constant="8" id="fFT-u0-ub9"/>
+                <constraint firstItem="fzX-R5-fzm" firstAttribute="top" secondItem="5wV-1p-7fI" secondAttribute="top" id="g1t-2h-Y0S"/>
+                <constraint firstItem="TrF-CZ-2Vs" firstAttribute="top" secondItem="fzX-R5-fzm" secondAttribute="bottom" id="lYD-dL-mdS"/>
+                <constraint firstItem="LIw-0f-1FN" firstAttribute="top" secondItem="TrF-CZ-2Vs" secondAttribute="bottom" constant="8" id="qgf-hh-jIa"/>
+                <constraint firstAttribute="trailing" secondItem="jYZ-L1-0uG" secondAttribute="trailing" constant="8" id="vN2-pm-ovs"/>
+                <constraint firstItem="TrF-CZ-2Vs" firstAttribute="leading" secondItem="5wV-1p-7fI" secondAttribute="leading" id="zeH-8w-HYk"/>
+            </constraints>
         </view>
     </objects>
     <resources>
-        <image name="All Btn BG.png" width="63" height="33"/>
-        <image name="Done Btn BG.png" width="96" height="33"/>
         <image name="Notification Bell.png" width="30" height="30"/>
-        <image name="Notification with Number.png" width="11" height="11"/>
-        <image name="Screen BG Iphone 5.png" width="320" height="569"/>
         <image name="Seacrh Btn.png" width="27" height="27"/>
-        <image name="Search Text BG.png" width="305" height="43"/>
-        <image name="Shadding with BG.png" width="320" height="74"/>
-        <image name="Shadow Bar.png" width="9" height="572"/>
         <image name="SideBar Navigation.png" width="30" height="30"/>
     </resources>
-    <simulatedMetricsContainer key="defaultSimulatedMetrics">
-        <simulatedStatusBarMetrics key="statusBar"/>
-        <simulatedOrientationMetrics key="orientation"/>
-        <simulatedScreenMetrics key="destination" type="retina4"/>
-    </simulatedMetricsContainer>
 </document>

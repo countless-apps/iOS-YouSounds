@@ -1,0 +1,19 @@
+PODS:
+  - ActionSheetPicker-3.0 (1.5.1)
+  - ChameleonFramework (1.2.0)
+  - IQKeyboardManager (3.2.4)
+  - TTTAttributedLabel (1.13.3)
+
+DEPENDENCIES:
+  - ActionSheetPicker-3.0 (~> 1.5.1)
+  - ChameleonFramework
+  - IQKeyboardManager
+  - TTTAttributedLabel
+
+SPEC CHECKSUMS:
+  ActionSheetPicker-3.0: de0f71e30495ed0192f7d16d0fddcab6882a0ca3
+  ChameleonFramework: 4d6bf87fcaee176f487176cdccc4229637ec97f0
+  IQKeyboardManager: 555b1231fefafb21b19278d7cca72986a27b748b
+  TTTAttributedLabel: 6f3174aef8e738f44dff97c2eb7d8184f6ab6277
+
+COCOAPODS: 0.37.2

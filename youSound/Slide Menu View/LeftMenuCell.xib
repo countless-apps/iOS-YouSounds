@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="7706" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OPENSANS-REGULAR_0.TTF">
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="63" id="KGk-i7-Jjw" customClass="LeftMenuCell">
+            <rect key="frame" x="0.0" y="0.0" width="366" height="61"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="yxi-h6-xDE">
+                        <rect key="frame" x="15" y="10" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="40" id="1NS-K3-8so"/>
+                            <constraint firstAttribute="height" constant="40" id="joy-7r-Fz2"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cell Accesory.png" translatesAutoresizingMaskIntoConstraints="NO" id="8Ec-Iu-77v">
+                        <rect key="frame" x="350" y="23" width="8" height="14"/>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uAf-nh-OPt">
+                        <rect key="frame" x="58" y="19" width="41" height="22"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="16"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                <constraints>
+                    <constraint firstItem="yxi-h6-xDE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="15" id="012-os-sPp"/>
+                    <constraint firstItem="uAf-nh-OPt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="50" id="7NI-gg-b9N"/>
+                    <constraint firstItem="yxi-h6-xDE" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="EbX-IA-JYd"/>
+                    <constraint firstItem="8Ec-Iu-77v" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="GcD-ul-8hk"/>
+                    <constraint firstItem="yxi-h6-xDE" firstAttribute="centerY" secondItem="uAf-nh-OPt" secondAttribute="centerY" id="SLU-JF-vcy"/>
+                    <constraint firstAttribute="centerY" secondItem="8Ec-Iu-77v" secondAttribute="centerY" id="ZwD-ug-w9f"/>
+                    <constraint firstAttribute="bottom" secondItem="yxi-h6-xDE" secondAttribute="bottom" constant="10" id="wtn-OJ-Sq1"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mImage" destination="yxi-h6-xDE" id="hhk-dt-zo6"/>
+                <outlet property="mTitle" destination="uAf-nh-OPt" id="JC9-fJ-LQH"/>
+            </connections>
+            <point key="canvasLocation" x="271" y="296.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="Cell Accesory.png" width="8" height="14"/>
+    </resources>
+</document>

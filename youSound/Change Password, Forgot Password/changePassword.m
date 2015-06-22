@@ -22,11 +22,8 @@
     
     __weak IBOutlet UITextField *txtConfirmPwd;
     IBOutlet UILabel *lblHeader;
-    IBOutlet UIButton *btnBack;
-    IBOutlet UITextField *txtEmailID;
     IBOutlet UITextField *txtOldPwd;
     IBOutlet UITextField *txtNewPwd;
-    IBOutlet UIButton *btnUpdate;
 }
 @end
 
@@ -36,44 +33,21 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    lblHeader.font = lableHeader;
-    lblHeader.textColor = [UIColor whiteColor];
     
-    UIImageView *img1= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    img1.image = [UIImage imageNamed:@"Password.png"];
-    txtOldPwd.font = lableHeader;
-    [txtOldPwd addSubview:img1];
-    txtOldPwd.leftView = paddinglogintext;
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors: BGCOLORS];
+    
+    
+    
     txtOldPwd.leftViewMode = UITextFieldViewModeAlways;
-    txtOldPwd.placeholder = @"Enter old password";
+    txtOldPwd.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Password.png"]];
     
-    UIImageView *img2= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    img2.image = [UIImage imageNamed:@"Password.png"];
-    txtNewPwd.font = lableHeader;
-    [txtNewPwd addSubview:img2];
-    txtNewPwd.leftView = paddinglogintext;
     txtNewPwd.leftViewMode = UITextFieldViewModeAlways;
-    txtNewPwd.placeholder = @"Enter new password";
+    txtNewPwd.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Password.png"]];
     
-    UIImageView *img3= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    img3.image = [UIImage imageNamed:@"Password.png"];
-    txtConfirmPwd.font = lableHeader;
-    [txtConfirmPwd addSubview:img3];
-    txtConfirmPwd.leftView = paddinglogintext;
     txtConfirmPwd.leftViewMode = UITextFieldViewModeAlways;
-    txtConfirmPwd.placeholder = @"Confirm new password";
+    txtConfirmPwd.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Password.png"]];
 }
 
-#pragma mark - textField Delegate
--(BOOL) textFieldShouldReturn: (UITextField *) textField {
-    if(textField == txtOldPwd){
-        [txtNewPwd becomeFirstResponder];
-    }
-    else if (textField == txtNewPwd){
-        [textField resignFirstResponder];
-    }
-    return  YES;
-}
 
 #pragma  mark - UpdatePassword WS
 -(void)updatePwd{

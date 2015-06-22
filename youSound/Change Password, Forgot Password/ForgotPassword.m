@@ -20,7 +20,6 @@
     
     IBOutlet UILabel *lblHeader;
     IBOutlet UITextField *txtEmailID;
-    IBOutlet UITextField *txtPassword;
     IBOutlet UIButton *LeftNavigationBtn;
     IBOutlet UIButton *btnUpdate;
 }
@@ -33,16 +32,10 @@
 {
     [super viewDidLoad];
     
-    lblHeader.font = lableHeader;
-    lblHeader.textColor = [UIColor whiteColor];
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors: BGCOLORS];
     
-    UIImageView *img= [[UIImageView alloc] initWithFrame:CGRectMake(10, 12, 25, 20)];
-    img.image = [UIImage imageNamed:@"Email ID.png" ];
-    txtEmailID.font = lableHeader;
-    txtEmailID.leftView = paddinglogintext;
-    [txtEmailID addSubview:img];
     txtEmailID.leftViewMode = UITextFieldViewModeAlways;
-    txtEmailID.placeholder = @"E-Mail address";
+    txtEmailID.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Email ID.png"]];
 }
 
 #pragma mark - UpdatePassword WS

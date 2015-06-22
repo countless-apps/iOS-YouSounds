@@ -28,26 +28,5 @@
     }
     return self;
 }
-#pragma mark - Swipe Cell Delegates
-- (NSArray *)leftButtons
-{
-    leftUtilityButtons = [NSMutableArray new];
-    [leftUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithPatternImage:[UIImage imageNamed:@"Swipe Btn BG.png" ]] icon:[UIImage imageNamed:@"Share Btn.png"]];
-    
-   /* [leftUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithPatternImage:[UIImage imageNamed:@"Swipe Btn BG.png" ]]icon:[UIImage imageNamed:@"Heart_Liked.png"]];*/
-    
-    [leftUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithPatternImage:[UIImage imageNamed:@"Swipe Btn BG.png" ]]icon:[UIImage imageNamed:@"heart2.png"]];
-    
-    [leftUtilityButtons sw_addUtilityButtonWithColor:
-     [UIColor colorWithPatternImage:[UIImage imageNamed:@"Swipe Btn BG.png" ]]icon:[UIImage imageNamed:@"buy-icon.png"]];
-    
-    return leftUtilityButtons;
-}
-- (BOOL)swipeableTableViewCellShouldHideUtilityButtonsOnSwipe:(SWTableViewCell *)cell
-{
-    return YES;
-}
+
 @end

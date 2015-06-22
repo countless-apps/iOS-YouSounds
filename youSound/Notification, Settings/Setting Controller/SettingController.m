@@ -37,8 +37,13 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    lblHeader.font = [UIFont fontWithName:@"OpenSans-Semibold" size:15];
-    lblHeader.textColor = [UIColor whiteColor];
+    
+    CGRect newFrame = self.view.frame;
+    newFrame.size = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.view.frame = newFrame;
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors: BGCOLORS];
+    
+    
     tableview.opaque = NO;
     tableview.tableFooterView=[[UIView alloc]initWithFrame:CGRectZero];
     tableview.backgroundColor = [UIColor clearColor];

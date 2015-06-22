@@ -35,13 +35,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    lblHeader.font = lableHeader;
-    // Do any additional setup after loading the view from its nib.
     
-    /*NSString *fullURL = [URLBase stringByAppendingString:@"ws/admin/help/format/json"];
-    NSURL *url = [NSURL URLWithString:fullURL];
-    NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
-    [webView loadRequest:requestObj];*/
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors: BGCOLORS];
+    
     [self fetchData];
 }
 -(void)fetchData

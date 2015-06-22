@@ -34,16 +34,18 @@
     BOOL temp;
     
     IBOutlet UIButton *btnBadge;
-    IBOutlet UIScrollView *scrollView;
     IBOutlet UITableView *tableview;
     IBOutlet UIButton *RightNavigationBtn;
     IBOutlet UIButton *LeftNavigationBtn;
-    IBOutlet UISearchBar *mSearchBar;
     IBOutlet UITextField *txtSearch;
     IBOutlet UILabel *lblHeader;
     IBOutlet UIButton *btnDone;
     IBOutlet UIButton *btnAll;
 }
+
+@property (weak, nonatomic) IBOutlet UIView *masterView;
+@property (weak, nonatomic) IBOutlet UIView *view2;
+
 @end
 
 @implementation InviteFriendsController
@@ -60,6 +62,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGRect newFrame = self.view.frame;
+    newFrame.size = CGSizeMake(SCREEN_WIDTH, SCREEN_HEIGHT);
+    self.view.frame = newFrame;
+    
+    
+    self.masterView.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.masterView.frame andColors: BGCOLORS1];
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors: BGCOLORS];
+    self.view2.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleTopToBottom withFrame:self.view2.frame andColors: BGCOLORS2];
+    
+    
+    
+    
     [SVProgressHUD showWithStatus:kPleaseWait maskType:SVProgressHUDMaskTypeGradient];
     
     self.view.frame = CGRectMake(0, 0, 320, 568);

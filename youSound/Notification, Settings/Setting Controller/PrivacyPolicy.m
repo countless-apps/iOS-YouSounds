@@ -18,7 +18,6 @@
     IBOutlet UILabel *lblHeader;
     IBOutlet UIWebView *webView;
     NSURL *urlPrivacy;
-    IBOutlet UITextView *txtField;
 }
 @end
 
@@ -27,7 +26,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    lblHeader.font = lableHeader;
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors:BGCOLORS];    
     [self fetchData];
 }
 -(void)fetchData

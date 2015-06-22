@@ -46,51 +46,16 @@ facebookAccount = _facebookAccount;
     if([myString  isEqual: @"1"]){
         [self displayView];
     }
-    self.scrollView.backgroundColor = [UIColor clearColor];
-    self.navigationController.navigationBarHidden=YES;
+    self.view.backgroundColor = [UIColor colorWithGradientStyle:UIGradientStyleLeftToRight withFrame:self.view.frame andColors:BGCOLORS];
     
-    // find the font family
-  /*-  for (NSString* family in [UIFont familyNames])
-     {
-     NSLog(@"Font Family:%@ *******", family);
-     
-     for (NSString* name in [UIFont fontNamesForFamilyName: family])
-     {
-     NSLog(@"  %@", name);
-     }
-     }*/
     
-    //Padding Spaces in to begining of cell
-    UIImageView *img= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    img.image = [UIImage imageNamed:@"Email ID.png" ];
-    txtEmailID.font = lableHeader;
-    txtEmailID.leftView = paddinglogintext;
-    [txtEmailID addSubview:img];
     txtEmailID.leftViewMode = UITextFieldViewModeAlways;
-    txtEmailID.placeholder = @"E-Mail address";
+    txtEmailID.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Email ID.png"]];
     
-    UIImageView *img1= [[UIImageView alloc] initWithFrame:CGRectMake(10, 10, 25, 20)];
-    img1.image = [UIImage imageNamed:@"Password.png"];
-    txtPassword.secureTextEntry=YES;
-    txtPassword.font = lableHeader;
-    [txtPassword addSubview:img1];
-    txtPassword.leftView = paddinglogintext;
     txtPassword.leftViewMode = UITextFieldViewModeAlways;
-    txtPassword.placeholder = @"••••••••••";
-}
-
-#pragma mark - TextField Delegate
--(BOOL) textFieldShouldReturn: (UITextField *) textField
-{
-    if(textField == txtEmailID)
-    {
-        [txtPassword becomeFirstResponder];
-    }
-    else if (textField == txtPassword)
-    {
-        [textField resignFirstResponder];
-    }
-    return  YES;
+    txtPassword.leftView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"Password.png"]];
+    
+    self.navigationController.navigationBarHidden=YES;
 }
 
 #pragma mark - New User Buttons Click Events
@@ -114,13 +79,11 @@ facebookAccount = _facebookAccount;
     NSDictionary *dictData = nil;
     
     dictData = [NSDictionary dictionaryWithObjects:@[txtEmailID.text, txtPassword.text, @"IOS", [[NSUserDefaults standardUserDefaults] valueForKey:@"TokenKey"]] forKeys:@[@"vEmail",@"vPassword",@"ePlatform",@"vDeviceToken"]];
-    //dictData = [NSDictionary dictionaryWithObjects:@[txtEmailID.text, txtPassword.text, @"IOS", @"sf"] forKeys:@[@"vEmail",@"vPassword",@"ePlatform",@"vDeviceToken"]];
     
     //ToCheck Field Is Valid ?
     if ([CommonMethods isValidTextFieldData:dictData])
     {
         dictEditData = [NSMutableDictionary dictionaryWithObjects:@[txtEmailID.text, txtPassword.text, @"IOS",[[NSUserDefaults standardUserDefaults] valueForKey:@"TokenKey"]] forKeys:@[@"vEmail", @"vPassword",@"ePlatform",@"vDeviceToken"]];
-        //dictEditData = [NSMutableDictionary dictionaryWithObjects:@[txtEmailID.text, txtPassword.text, @"IOS",@"sf"] forKeys:@[@"vEmail", @"vPassword",@"ePlatform",@"vDeviceToken"]];
         
         [self loginUser:btn.tag];
     }
